@@ -52,5 +52,19 @@
         <input type="submit" value="Submit" />
       </form>
     </div>
+    <script>
+      const API_KEY = "AIzaSyCovcM5FN_doJDs7yRuDs8LrAMob-MXJYA";
+      const CHANNEL_ID = "UCsaurqTzPbEaKiO5JnhezEA";
+
+      async function fetchLatestVideo() {
+        const response = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&order=date&maxResults=1`
+        );
+        const data = await response.json();
+        console.log(data);
+      }
+
+      document.addEventListener("DOMContentLoaded", fetchLatestVideo);
+    </script>
   </body>
 </html>
