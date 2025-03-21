@@ -61,7 +61,7 @@
           `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&order=date&maxResults=1`
         );
         const data = await response.json();
-        const video = data.item[0];
+        const video = data.items[0];
         if (!video) return;
         document.querySelector(
           "#youtube-video"
