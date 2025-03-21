@@ -22,16 +22,16 @@
   <body>
     <h1>Link Hub</h1>
     <div class="wrapper">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/rnc1posqkVg?si=NNK1tp7RdojN-GA9"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <a
+        id="youtube-video"
+        href="https://www.youtube.com/watch?v=rnc1posqkVg"
+        target="_blank"
+      >
+        <img
+          src="https://img.youtube.com/vi/rnc1posqkVg/maxresdefault.jpg"
+          alt="Code and deploy landing page in 1 HOUR with HTML and CSS."
+        />
+      </a>
       <a href="https://khralenok.com/" target="_blank">Website</a>
       <a href="https://t.me/khralenok_com" target="_blank">Telegram</a>
       <form method="POST" action="https://formspree.io/f/mldjgzpd">
@@ -61,7 +61,15 @@
           `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&order=date&maxResults=1`
         );
         const data = await response.json();
-        console.log(data);
+        const video = data.item[0];
+        if (!video) return;
+        document.querySelector(
+          "#youtube-video"
+        ).href = `https://www.youtube.com/watch?v=${video.id.videoId}`;
+        document.querySelector(
+          "#youtube-video img"
+        ).src = `https://img.youtube.com/vi/${video.id.videoId}/maxresdefault.jpg`;
+        document.querySelector("#youtube-video img").alt = video.snippet.title;
       }
 
       document.addEventListener("DOMContentLoaded", fetchLatestVideo);
