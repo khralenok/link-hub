@@ -96,7 +96,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   background-color: var(--color-mid100);
-  background-image: url("../images/pattern.webp");
+  background-image: url("images/pattern.webp");
 }
 
 section {
